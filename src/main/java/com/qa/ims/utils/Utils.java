@@ -3,15 +3,21 @@ package com.qa.ims.utils;
 import java.util.Scanner;
 
 public class Utils {
-	
-	private Utils () {
-		
+
+	private Utils() {
+
 	}
 
 	public static String getInput() {
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		return scanner.nextLine();
+	}
+
+	public static Double getInput1() {
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextDouble();
 	}
 
 }
