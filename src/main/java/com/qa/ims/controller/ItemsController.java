@@ -22,8 +22,8 @@ public class ItemsController implements CrudController<Items> {
 		return Utils.getInput();
 	}
 
-	Double getInput1() {
-		return Utils.getInput1();
+	Double getInputD() {
+		return Utils.getInputD();
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class ItemsController implements CrudController<Items> {
 		LOGGER.info("Please enter the item name");
 		String itemName = getInput();
 		LOGGER.info("Please enter the price of the Item");
-		Double Price = getInput1();
+		Double Price = getInputD();
 		Items items = itemsService.create(new Items(itemName, Price));
 		LOGGER.info("Customer created");
 		return items;
@@ -52,7 +52,7 @@ public class ItemsController implements CrudController<Items> {
 		LOGGER.info("Please enter the Item name");
 		String itemName = getInput();
 		LOGGER.info("Please enter the Price");
-		Double Price = getInput1();
+		Double Price = getInputD();
 		Items items = itemsService.update(new Items(id, itemName, Price));
 		LOGGER.info("Item Updated");
 		return items;

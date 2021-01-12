@@ -14,7 +14,7 @@ public class Utils {
 		return scanner.nextLine();
 	}
 
-	public static Double getInput1() {
+	public static Double getInputD() {
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		return scanner.nextDouble();
