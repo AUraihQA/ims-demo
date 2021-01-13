@@ -42,7 +42,7 @@ public class ItemsController implements CrudController<Items> {
 		LOGGER.info("Please enter the price of the Item");
 		Double Price = getInputD();
 		Items items = itemsService.create(new Items(itemName, Price));
-		LOGGER.info("Customer created");
+		LOGGER.info("Item created");
 		return items;
 	}
 
@@ -63,6 +63,7 @@ public class ItemsController implements CrudController<Items> {
 		LOGGER.info("Please enter the id of the item you would like to delete");
 		Long id = Long.valueOf(getInput());
 		itemsService.delete(id);
+		LOGGER.info("Item Deleted");
 	}
 
 }

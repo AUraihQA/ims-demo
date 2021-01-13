@@ -46,7 +46,7 @@ public class ItemsDaoMysql implements Dao<Items> {
 			ArrayList<Items> items = new ArrayList<>();
 			while (resultSet.next()) {
 				items.add(itemsFromResultSet(resultSet));
-				return null;
+
 			}
 			return items;
 		} catch (SQLException e) {
@@ -86,7 +86,7 @@ public class ItemsDaoMysql implements Dao<Items> {
 	public Items readItems(Long id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT FROM items where id = " + id);) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM items where id = " + id)) {
 			resultSet.next();
 			return itemsFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -99,7 +99,7 @@ public class ItemsDaoMysql implements Dao<Items> {
 	@Override
 	public Items update(Items items) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				Statement statement = connection.createStatement();) {
+				Statement statement = connection.createStatement()) {
 			statement.executeUpdate("update items set item_name ='" + items.getItemName() + "', Price ='"
 					+ items.getPrice() + "' where id =" + items.getId());
 			return readItems(items.getId());
