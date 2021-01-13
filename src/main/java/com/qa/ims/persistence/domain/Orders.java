@@ -1,21 +1,19 @@
 package com.qa.ims.persistence.domain;
 
-import java.time.LocalDate;
-
 public class Orders {
 	private Long id;
 	private String OrderAddress;
-	private LocalDate OrderDate = LocalDate.now();
+	private String OrderDate;
 	private Long CustomerID;
 
-	public Orders(String orderAddress, LocalDate orderDate, Long customerID) {
+	public Orders(String orderAddress, String orderDate, Long customerID) {
 		super();
 		OrderAddress = orderAddress;
 		OrderDate = orderDate;
 		CustomerID = customerID;
 	}
 
-	public Orders(Long id, String orderAddress, LocalDate orderDate, Long customerID) {
+	public Orders(Long id, String orderAddress, String orderDate, Long customerID) {
 		super();
 		this.id = id;
 		OrderAddress = orderAddress;
@@ -39,11 +37,11 @@ public class Orders {
 		OrderAddress = orderAddress;
 	}
 
-	public LocalDate getOrderDate() {
+	public String getOrderDate() {
 		return OrderDate;
 	}
 
-	public void setOrderDate(LocalDate orderDate) {
+	public void setOrderDate(String orderDate) {
 		OrderDate = orderDate;
 	}
 
