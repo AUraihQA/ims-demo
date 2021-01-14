@@ -7,14 +7,12 @@ public class Orders {
 	private Long CustomerID;
 
 	public Orders(String orderAddress, String orderDate, Long customerID) {
-		super();
 		OrderAddress = orderAddress;
 		OrderDate = orderDate;
 		CustomerID = customerID;
 	}
 
 	public Orders(Long id, String orderAddress, String orderDate, Long customerID) {
-		super();
 		this.id = id;
 		OrderAddress = orderAddress;
 		OrderDate = orderDate;
@@ -53,7 +51,6 @@ public class Orders {
 		CustomerID = customerID;
 	}
 
-	@Override
 	public String toString() {
 		return "id:" + id + " OrderAddress:" + OrderAddress + " OrderDate:" + OrderDate + " CustomerID:" + CustomerID;
 	}
