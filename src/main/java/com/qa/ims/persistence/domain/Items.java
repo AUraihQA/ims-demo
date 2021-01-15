@@ -36,7 +36,7 @@ public class Items {
 		return Price;
 	}
 
-	public void setSurname(Double Price) {
+	public void setPrice(Double Price) {
 		this.Price = Price;
 	}
 
