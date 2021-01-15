@@ -10,6 +10,7 @@ public class Orders {
 		OrderAddress = orderAddress;
 		OrderDate = orderDate;
 		CustomerID = customerID;
+
 	}
 
 	public Orders(Long id, String orderAddress, String orderDate, Long customerID) {
