@@ -6,19 +6,23 @@ public class OrderItems {
 	private Long orderID;
 	private Double price;
 	private int quantity;
+	private String ItemName;
 
-	public OrderItems(Long itemID, Long orderID, Double price, int quantity) {
+	public OrderItems(Long itemID, Long orderID, Integer quantity, Double price, String ItemName) {
 		this.itemID = itemID;
 		this.orderID = orderID;
-		this.price = price;
 		this.quantity = quantity;
+		this.price = price;
+		this.ItemName = ItemName;
 	}
 
-	public OrderItems(Long id, Long itemID, Long orderID, Double price) {
+	public OrderItems(Long id, Long itemID, Long orderID, Integer quantity, Double price, String ItemName) {
 		this.id = id;
 		this.itemID = itemID;
 		this.orderID = orderID;
+		this.quantity = quantity;
 		this.price = price;
+		this.ItemName = ItemName;
 	}
 
 	public Long getId() {
@@ -61,9 +65,18 @@ public class OrderItems {
 		this.price = price;
 	}
 
+	public String getItemName() {
+		return ItemName;
+	}
+
+	public void setItemName(String itemName) {
+		ItemName = itemName;
+	}
+
 	@Override
 	public String toString() {
-		return "id: " + id + " itemID:" + itemID + " orderID: " + orderID + " Price:" + price + " Quantity" + quantity;
+		return "id: " + id + " itemID:" + itemID + " orderID: " + orderID + " Price:" + price + " Quantity:" + quantity
+				+ " Item Name:" + ItemName;
 	}
 
 	@Override

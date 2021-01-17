@@ -33,10 +33,12 @@ public class OrderItemsDaoMysql implements Dao<OrderItems> {
 
 	OrderItems orderItemsFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
+		Long itemsID = resultSet.getLong("itemID");
 		Long orderID = resultSet.getLong("orderID");
-		Long itemsID = resultSet.getLong("itemsID");
 		Double Price = resultSet.getDouble("Price");
-		return new OrderItems(id, orderID, itemsID, Price);
+		Integer quantity = resultSet.getInt("quantity");
+		String ItemName = resultSet.getString("item_name");
+		return new OrderItems(id, itemsID, orderID, quantity, Price, ItemName);
 	}
 
 	@Override
@@ -44,7 +46,7 @@ public class OrderItemsDaoMysql implements Dao<OrderItems> {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery(
-						"select oi.id, oi.orderID, oi.itemID, oi.quantity, items.Price from order_items oi join items on items.id=oi.itemID;");) {
+						"select oi.id, oi.orderID, oi.itemID, oi.quantity, items.Price, items.item_name from order_items oi join items on items.id=oi.itemID;");) {
 			ArrayList<OrderItems> orderitems = new ArrayList<>();
 			while (resultSet.next()) {
 				orderitems.add(orderItemsFromResultSet(resultSet));
@@ -58,22 +60,75 @@ public class OrderItemsDaoMysql implements Dao<OrderItems> {
 
 	}
 
-	@Override
-	public OrderItems create(OrderItems t) {
-		// TODO Auto-generated method stub
+	public OrderItems readLatest() {
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery(
+						"select oi.id, oi.orderID, oi.itemID, oi.quantity, items.Price, items.item_name from order_items oi join items on items.id=oi.itemID ORDER BY id DESC LIMIT 1;");) {
+			resultSet.next();
+			return orderItemsFromResultSet(resultSet);
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
 		return null;
 	}
 
 	@Override
-	public OrderItems update(OrderItems t) {
-		// TODO Auto-generated method stub
+	public OrderItems create(OrderItems orderItems) {
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();) {
+			statement.executeUpdate(
+					"insert into order_items(orderID, itemsID, quantity) values('" + orderItems.getOrderID() + "','"
+							+ orderItems.getItemID() + "','" + orderItems.getQuantity() + "')");
+			return readLatest();
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
+
+	public OrderItems readOrderItems(Long id) {
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery(
+						"select order_items.id, order_items.orderID, order_items.itemID, order_items.quantity, items.Price, items.item_name from order_items join items on items.id=order_items.itemID WHERE order_items.id= 3"
+								+ id)) {
+			resultSet.next();
+			return orderItemsFromResultSet(resultSet);
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
+
+	@Override
+	public OrderItems update(OrderItems orderItems) {
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement()) {
+			statement.executeUpdate("update order_items set orderID ='" + orderItems.getOrderID() + "', itemID ='"
+					+ orderItems.getItemID() + "', quantity ='" + orderItems.getQuantity() + "' where id ="
+					+ orderItems.getId());
+			return readOrderItems(orderItems.getId());
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
 		return null;
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();) {
+			statement.executeUpdate("delete from order_items where id = " + id);
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+
+		}
 
 	}
-
 }
