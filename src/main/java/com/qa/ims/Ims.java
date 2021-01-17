@@ -57,6 +57,8 @@ public class Ims {
 			break;
 		case STOP:
 			break;
+		case ORDER_ITEMS:
+			break;
 		default:
 			break;
 		}
