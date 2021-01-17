@@ -1,7 +1,8 @@
 Coverage: 34%
 # Project Title
 
-One Paragraph of project description goes here
+Link to Jira board:https://auraihqa.atlassian.net/secure/RapidBoard.jspa?projectKey=IP&rapidView=4&atlOrigin=eyJpIjoiNzFhZmJmYTdmYTAwNDQ1NzljYjc0MDhmNzk5ZjFkN2UiLCJwIjoiaiJ9
+
 
 ## Getting Started
 

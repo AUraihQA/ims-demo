@@ -87,7 +87,9 @@ public class OrdersDaoMysql implements Dao<Orders> {
 	public Orders readOrders(Long id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM Orders where id = " + id)) {
+				ResultSet resultSet = statement.executeQuery(
+						"SELECT orders.id, orders.order_address, orders.customerid, order_items.quantity, items.item_name from order_items join orders on order_items.orderid=orders.id join items on items.id=order_items.itemID WHERE orders.id="
+								+ id)) {
 			resultSet.next();
 			return ordersFromResultSet(resultSet);
 		} catch (Exception e) {
