@@ -25,6 +25,16 @@ public class OrderItems {
 		this.ItemName = ItemName;
 	}
 
+	public OrderItems(Double price) {
+		this.price = price;
+	}
+
+	public OrderItems(Long itemID, Long orderID, Integer quantity) {
+		this.itemID = itemID;
+		this.orderID = orderID;
+		this.quantity = quantity;
+	}
+
 	public Long getId() {
 		return id;
 	}
