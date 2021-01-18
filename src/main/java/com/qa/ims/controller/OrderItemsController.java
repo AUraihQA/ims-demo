@@ -50,11 +50,11 @@ public class OrderItemsController implements CrudController<OrderItems> {
 	@Override
 	public OrderItems create() {
 		Double TotalCost = 0.0;
-		LOGGER.info("Would you like to add items to an order? 1 for YES, 0 for NO");
+		LOGGER.info("Please enter the ID of the order you would like to add item(s) to");
+		Long orderID = getInputL();
+		LOGGER.info("Would you like to add items to this order? 1 for YES, 0 for NO");
 		int inputForNextBuy = getInputI();
 		do {
-			LOGGER.info("Please enter the ID of the order you would like to add item(s) to");
-			Long orderID = getInputL();
 			LOGGER.info("Please enter the ID of the item you would like to add to the order");
 			Long itemID = getInputL();
 			LOGGER.info("Please enter quantity you would like to add");
@@ -62,11 +62,11 @@ public class OrderItemsController implements CrudController<OrderItems> {
 			OrderItems Orderitems = orderitemsService.create(new OrderItems(itemID, orderID, quantity));
 			Double price = Orderitems.getPrice();
 			Double Amount = quantity * price;
-			System.out.println("Amount = " + Amount);
+			System.out.println("Price of item = " + Amount);
 			TotalCost = TotalCost + Amount;
 			System.out.println("Total Cost = " + TotalCost);
 			LOGGER.info("Item added to order");
-			LOGGER.info("Would you like to add items to an order? 1 for YES, 0 for NO");
+			LOGGER.info("Would you like to another item the order? 1 for YES, 0 for NO");
 			inputForNextBuy = getInputI();
 
 		} while (inputForNextBuy == 1);
