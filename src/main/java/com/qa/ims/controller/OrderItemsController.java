@@ -66,7 +66,7 @@ public class OrderItemsController implements CrudController<OrderItems> {
 			TotalCost = TotalCost + Amount;
 			System.out.println("Total Cost = " + TotalCost);
 			LOGGER.info("Item added to order");
-			LOGGER.info("Would you like to another item the order? 1 for YES, 0 for NO");
+			LOGGER.info("Would you like to add another item the order? 1 for YES, 0 for NO");
 			inputForNextBuy = getInputI();
 
 		} while (inputForNextBuy == 1);
