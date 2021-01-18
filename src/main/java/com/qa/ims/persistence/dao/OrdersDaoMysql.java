@@ -34,17 +34,23 @@ public class OrdersDaoMysql implements Dao<Orders> {
 
 	Orders ordersFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
-		String OrderAddress = resultSet.getString("OrderAddress");
-		String OrderDate = resultSet.getString("OrderDate");
-		Long customerID = resultSet.getLong("customerID");
-		return new Orders(id, OrderAddress, OrderDate, customerID);
+		String OrderAddress = resultSet.getString("order_address");
+		String OrderDate = resultSet.getString("order_date");
+		Long CustomerID = resultSet.getLong("customerid");
+		Long ItemID = resultSet.getLong("itemID");
+		String ItemName = resultSet.getString("item_name");
+		Double Price = resultSet.getDouble("Price");
+		Integer Quantity = resultSet.getInt("quantity");
+
+		return new Orders(id, OrderAddress, OrderDate, CustomerID, ItemID, ItemName, Price, Quantity);
 	}
 
 	@Override
 	public List<Orders> readAll() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select * from Orders");) {
+				ResultSet resultSet = statement.executeQuery(
+						"select orders.id, orders.order_address, orders.order_date, orders.customerid, order_items.itemID, items.item_name, items.Price, order_items.quantity from order_items join orders on order_items.orderid=orders.id join items on items.id=order_items.itemID;");) {
 			ArrayList<Orders> orders = new ArrayList<>();
 			while (resultSet.next()) {
 				orders.add(ordersFromResultSet(resultSet));
@@ -60,7 +66,8 @@ public class OrdersDaoMysql implements Dao<Orders> {
 	public Orders readLatest() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM Orders ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery(
+						"select orders.id, orders.order_address, orders.order_date, orders.customerid, order_items.itemID, items.item_name, items.Price, order_items.quantity from order_items join orders on order_items.orderid=orders.id join items on items.id=order_items.itemID ORDER BY id DESC LIMIT 1");) {
 			resultSet.next();
 			return ordersFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -88,7 +95,7 @@ public class OrdersDaoMysql implements Dao<Orders> {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery(
-						"SELECT orders.id, orders.order_address, orders.customerid, order_items.quantity, items.item_name from order_items join orders on order_items.orderid=orders.id join items on items.id=order_items.itemID WHERE orders.id="
+						"select orders.id, orders.order_address, orders.order_date, orders.customerid, order_items.itemID, items.item_name, items.Price, order_items.quantity from order_items join orders on order_items.orderid=orders.id join items on items.id=order_items.itemID WHERE orders.id ="
 								+ id)) {
 			resultSet.next();
 			return ordersFromResultSet(resultSet);

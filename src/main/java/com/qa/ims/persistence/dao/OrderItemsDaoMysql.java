@@ -33,12 +33,12 @@ public class OrderItemsDaoMysql implements Dao<OrderItems> {
 
 	OrderItems orderItemsFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
-		Long itemsID = resultSet.getLong("itemID");
+		Long itemID = resultSet.getLong("itemID");
 		Long orderID = resultSet.getLong("orderID");
 		Double Price = resultSet.getDouble("Price");
 		Integer quantity = resultSet.getInt("quantity");
 		String ItemName = resultSet.getString("item_name");
-		return new OrderItems(id, itemsID, orderID, quantity, Price, ItemName);
+		return new OrderItems(id, itemID, orderID, quantity, Price, ItemName);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class OrderItemsDaoMysql implements Dao<OrderItems> {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate(
-					"insert into order_items(orderID, itemsID, quantity) values('" + orderItems.getOrderID() + "','"
+					"insert into order_items(orderID, itemID, quantity) values('" + orderItems.getOrderID() + "','"
 							+ orderItems.getItemID() + "','" + orderItems.getQuantity() + "')");
 			return readLatest();
 		} catch (Exception e) {

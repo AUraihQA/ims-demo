@@ -31,6 +31,10 @@ public class OrdersController implements CrudController<Orders> {
 		return Utils.getInputL();
 	}
 
+	Integer getInputI() {
+		return Utils.getInputI();
+	}
+
 	@Override
 	public List<Orders> readAll() {
 		List<Orders> orders = ordersService.readAll();
@@ -43,13 +47,14 @@ public class OrdersController implements CrudController<Orders> {
 	@Override
 	public Orders create() {
 		LOGGER.info("Please enter the address of the order");
-		String OrderAddress = getInput();
+		String order_address = getInput();
 		LOGGER.info("Please enter the date the order was placed");
-		String OrderDate = getInput();
+		String order_date = getInput();
 		LOGGER.info("Please enter the id of the customer that placed the order");
-		Long CustomerID = getInputL();
-		Orders orders = ordersService.create(new Orders(OrderAddress, OrderDate, CustomerID));
+		Long customerid = getInputL();
+		Orders orders = ordersService.create(new Orders(order_address, order_date, customerid));
 		LOGGER.info("Order created");
+		LOGGER.info("To add items to this order, please go to ORDER_ITEMS");
 		return orders;
 	}
 
@@ -58,13 +63,14 @@ public class OrdersController implements CrudController<Orders> {
 		LOGGER.info("Please enter the id of the order you would like to update");
 		Long id = Long.valueOf(getInput());
 		LOGGER.info("Please enter the address of the order");
-		String OrderAddress = getInput();
+		String order_address = getInput();
 		LOGGER.info("Please enter the date the order was placed");
-		String OrderDate = getInput();
+		String order_date = getInput();
 		LOGGER.info("Please enter the id of the customer that placed the order");
-		Long CustomerID = getInputL();
-		Orders orders = ordersService.update(new Orders(id, OrderAddress, OrderDate, CustomerID));
+		Long customerid = getInputL();
+		Orders orders = ordersService.create(new Orders(id, order_address, order_date, customerid));
 		LOGGER.info("Order created");
+		LOGGER.info("To add items to this order, please go to ORDER_ITEMS");
 		return orders;
 
 	}
