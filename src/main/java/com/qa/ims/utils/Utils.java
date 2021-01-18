@@ -20,4 +20,23 @@ public class Utils {
 		return scanner.nextDouble();
 	}
 
+	public static Long getInputL() {
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextLong();
+	}
+
+	public static Integer getInputI() {
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextInt();
+
+	}
+
+	public static Boolean getInputB() {
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextBoolean();
+	}
+
 }

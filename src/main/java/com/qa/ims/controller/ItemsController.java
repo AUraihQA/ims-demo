@@ -39,7 +39,7 @@ public class ItemsController implements CrudController<Items> {
 	public Items create() {
 		LOGGER.info("Please enter the item name");
 		String itemName = getInput();
-		LOGGER.info("Please enter the price of the Item");
+		LOGGER.info("Please enter the price of the Item (£)");
 		Double Price = getInputD();
 		Items items = itemsService.create(new Items(itemName, Price));
 		LOGGER.info("Item created");
