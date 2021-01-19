@@ -5,7 +5,7 @@ public class OrderItems {
 	private Long itemID;
 	private Long orderID;
 	private Double price;
-	private int quantity;
+	private Integer quantity;
 	private String ItemName;
 
 	public OrderItems(Long itemID, Long orderID, Integer quantity, Double price, String ItemName) {
@@ -25,11 +25,14 @@ public class OrderItems {
 		this.ItemName = ItemName;
 	}
 
-	public OrderItems(Double price) {
-		this.price = price;
+	public OrderItems(Long itemID, Long orderID, Integer quantity) {
+		this.itemID = itemID;
+		this.orderID = orderID;
+		this.quantity = quantity;
 	}
 
-	public OrderItems(Long itemID, Long orderID, Integer quantity) {
+	public OrderItems(Long id, Long itemID, Long orderID, Integer quantity) {
+		this.id = id;
 		this.itemID = itemID;
 		this.orderID = orderID;
 		this.quantity = quantity;
@@ -85,19 +88,20 @@ public class OrderItems {
 
 	@Override
 	public String toString() {
-		return "id: " + id + " itemID:" + itemID + " orderID: " + orderID + " Price:" + price + " Quantity:" + quantity
-				+ " Item Name:" + ItemName;
+		return "id:" + id + " ItemID:" + itemID + " OrderID:" + orderID + " ItemName:" + ItemName + " Price:" + price
+				+ " Quantity:" + quantity;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((ItemName == null) ? 0 : ItemName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((itemID == null) ? 0 : itemID.hashCode());
 		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
-		result = prime * result + quantity;
+		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
 		return result;
 	}
 
@@ -110,6 +114,11 @@ public class OrderItems {
 		if (getClass() != obj.getClass())
 			return false;
 		OrderItems other = (OrderItems) obj;
+		if (ItemName == null) {
+			if (other.ItemName != null)
+				return false;
+		} else if (!ItemName.equals(other.ItemName))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -130,7 +139,10 @@ public class OrderItems {
 				return false;
 		} else if (!price.equals(other.price))
 			return false;
-		if (quantity != other.quantity)
+		if (quantity == null) {
+			if (other.quantity != null)
+				return false;
+		} else if (!quantity.equals(other.quantity))
 			return false;
 		return true;
 	}
