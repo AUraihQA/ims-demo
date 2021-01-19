@@ -38,6 +38,11 @@ public class OrderItems {
 		this.quantity = quantity;
 	}
 
+	public OrderItems(Double price) {
+		super();
+		this.price = price;
+	}
+
 	public Long getId() {
 		return id;
 	}

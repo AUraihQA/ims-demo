@@ -77,13 +77,15 @@ public class OrderItemsController implements CrudController<OrderItems> {
 
 	@Override
 	public OrderItems update() {
+		LOGGER.info("Please enter the id of the order_item you would like to update");
+		Long id = Long.valueOf(getInput());
 		LOGGER.info("Please enter the id of the order you would like to update the items on");
-		Long itemID = Long.valueOf(getInput());
-		LOGGER.info("Please enter the id of the item in the order you would like to add");
 		Long orderID = getInputL();
+		LOGGER.info("Please enter the id of the item in the order you would like to add");
+		Long itemID = getInputL();
 		LOGGER.info("Please enter the quantity you would like to order of the item");
 		Integer quantity = getInputI();
-		OrderItems Orderitems = orderitemsService.create(new OrderItems(itemID, orderID, quantity));
+		OrderItems Orderitems = orderitemsService.update(new OrderItems(id, orderID, itemID, quantity));
 		LOGGER.info("Item in order updated");
 		return Orderitems;
 	}
