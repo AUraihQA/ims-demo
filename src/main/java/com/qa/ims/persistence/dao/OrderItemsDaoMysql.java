@@ -20,7 +20,7 @@ public class OrderItemsDaoMysql implements Dao<OrderItems> {
 	private String password;
 
 	public OrderItemsDaoMysql(String username, String password) {
-		this.jdbcConnectionUrl = "jdbc:mysql://localhost:3306/ims";
+		this.jdbcConnectionUrl = "jdbc:mysql://35.242.183.112:3306/ims";
 		this.username = username;
 		this.password = password;
 	}
