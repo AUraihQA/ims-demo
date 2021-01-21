@@ -68,7 +68,7 @@ public class OrdersController implements CrudController<Orders> {
 		String order_date = getInput();
 		LOGGER.info("Please enter the id of the customer that placed the order");
 		Long customerid = getInputL();
-		Orders orders = ordersService.create(new Orders(id, order_address, order_date, customerid));
+		Orders orders = ordersService.update(new Orders(id, order_address, order_date, customerid));
 		LOGGER.info("Order created");
 		LOGGER.info("To add items to this order, please go to ORDER_ITEMS");
 		return orders;

@@ -53,37 +53,42 @@ public class OrderItemsController implements CrudController<OrderItems> {
 		LOGGER.info("Please enter the ID of the order you would like to add item(s) to");
 		Long orderID = getInputL();
 		LOGGER.info("Would you like to add items to this order? 1 for YES, 0 for NO");
+		@SuppressWarnings("unused")
 		int inputForNextBuy = getInputI();
+		String inputForNextBuyN;
+		OrderItems orderItems = null;
 		do {
 			LOGGER.info("Please enter the ID of the item you would like to add to the order");
 			Long itemID = getInputL();
 			LOGGER.info("Please enter quantity you would like to add");
 			Integer quantity = getInputI();
-			OrderItems Orderitems = orderitemsService.create(new OrderItems(itemID, orderID, quantity));
-			Double price = Orderitems.getPrice();
+			orderItems = orderitemsService.create(new OrderItems(itemID, orderID, quantity));
+			Double price = orderItems.getPrice();
 			Double Amount = quantity * price;
 			System.out.println("Price of item = " + Amount);
 			TotalCost = TotalCost + Amount;
 			System.out.println("Total Cost = " + TotalCost);
 			LOGGER.info("Item added to order");
 			LOGGER.info("Would you like to add another item the order? 1 for YES, 0 for NO");
-			inputForNextBuy = getInputI();
+			inputForNextBuyN = getInput();
 
-		} while (inputForNextBuy == 1);
+		} while (inputForNextBuyN.equals("1"));
 
-		return null;
+		return orderItems;
 
 	}
 
 	@Override
 	public OrderItems update() {
+		LOGGER.info("Please enter the id of the order_item you would like to update");
+		Long id = Long.valueOf(getInput());
 		LOGGER.info("Please enter the id of the order you would like to update the items on");
-		Long itemID = Long.valueOf(getInput());
-		LOGGER.info("Please enter the id of the item in the order you would like to add");
 		Long orderID = getInputL();
+		LOGGER.info("Please enter the id of the item in the order you would like to add");
+		Long itemID = getInputL();
 		LOGGER.info("Please enter the quantity you would like to order of the item");
 		Integer quantity = getInputI();
-		OrderItems Orderitems = orderitemsService.create(new OrderItems(itemID, orderID, quantity));
+		OrderItems Orderitems = orderitemsService.update(new OrderItems(id, orderID, itemID, quantity));
 		LOGGER.info("Item in order updated");
 		return Orderitems;
 	}

@@ -140,7 +140,7 @@ public class ItemsTest {
 
 	@Test
 	public void toStringTest() {
-		String toString = "id: 1 Item name: item1 Price: 300.0";
+		String toString = "id: 1 Item Name: item1 Price: 300.0";
 		assertEquals(toString, item.toString());
 	}
 }
