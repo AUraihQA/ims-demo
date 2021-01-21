@@ -1,8 +1,8 @@
-Coverage: 34%
+Coverage: 67.2%
 # Project Title
 
 Link to Jira board:https://auraihqa.atlassian.net/secure/RapidBoard.jspa?projectKey=IP&rapidView=4&atlOrigin=eyJpIjoiNzFhZmJmYTdmYTAwNDQ1NzljYjc0MDhmNzk5ZjFkN2UiLCJwIjoiaiJ9
-
+Link to Github https://github.com/AUraihQA/ims-demo.git
 
 ## Getting Started
 
@@ -76,7 +76,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
-
+* **Adigwe Uraih**  
 ## License
 
 This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md) file for details 

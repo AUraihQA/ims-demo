@@ -19,8 +19,8 @@ public class OrdersTest {
 	public void setUp() {
 		orders = new Orders(1L, "123 road", "19th January 2020", 1L);
 		other = new Orders(1L, "123 road", "19th January 2020", 1L);
-		foreign = new Orders(1L, "123 road", "19th January 2020", 1L, 1L, "item1", 300.00, 2);
-		otherForeign = new Orders(1L, "123 road", "19th January 2020", 1L, 1L, "item1", 300.00, 2);
+		foreign = new Orders(1L, "123 road", "19th January 2020", 1L, 1L, "item1", 300.00, 1);
+		otherForeign = new Orders(1L, "123 road", "19th January 2020", 1L, 1L, "item1", 300.00, 1);
 
 	}
 
@@ -79,7 +79,7 @@ public class OrdersTest {
 		assertEquals(1L, foreign.getItemID(), 0);
 		assertEquals("item1", foreign.getItemName());
 		assertEquals(300.00, foreign.getPrice(), 0);
-		assertEquals(2, foreign.getQuantity());
+		assertEquals(1, foreign.getQuantity());
 
 	}
 
@@ -264,7 +264,7 @@ public class OrdersTest {
 
 	@Test
 	public void otherQuantityDifferent() {
-		otherForeign.setQuantity(1);
+		otherForeign.setQuantity(3);
 		assertFalse(foreign.equals(otherForeign));
 	}
 
@@ -275,7 +275,7 @@ public class OrdersTest {
 		assertNotNull(orders.getOrderAddress());
 		assertNotNull(orders.getOrderDate());
 		assertNotNull(orders.getCustomerID());
-		Orders foreign = new Orders("123 road", "19th January 2020", 1L, 1L, "item1", 300.00, 2);
+		Orders foreign = new Orders("123 road", "19th January 2020", 1L, 1L, "item1", 300.00, 1);
 		assertNull(foreign.getId());
 		assertNotNull(foreign.getOrderAddress());
 		assertNotNull(foreign.getOrderDate());
@@ -300,7 +300,7 @@ public class OrdersTest {
 
 	@Test
 	public void toStringTest() {
-		String toString = "id:1 OrderAddress:123 road OrderDate:19th January 2020 CustomerID:1 ItemID:1 ItemName:item1 Price:300.0 Quantity:2";
+		String toString = "id:1 OrderAddress:123 road OrderDate:19th January 2020 CustomerID:1 ItemID:1 ItemName:item1 Price:300.0 Quantity:1";
 		assertEquals(toString, foreign.toString());
 	}
 

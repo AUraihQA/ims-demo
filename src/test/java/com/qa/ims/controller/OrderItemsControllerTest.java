@@ -29,7 +29,7 @@ public class OrderItemsControllerTest {
 	public void readAllTest() {
 		OrderItemsController orderItemsController = new OrderItemsController(orderItemsServices);
 		List<OrderItems> orderItems = new ArrayList<>();
-		orderItems.add(new OrderItems(1L, 1L, 2));
+		orderItems.add(new OrderItems(1L, 1L, 1));
 		orderItems.add(new OrderItems(2L, 2L, 1));
 		orderItems.add(new OrderItems(3L, 3L, 3));
 		Mockito.when(orderItemsServices.readAll()).thenReturn(orderItems);
@@ -38,34 +38,21 @@ public class OrderItemsControllerTest {
 
 	@Test
 	public void createTest() {
-		// Double price = Orderitems.getPrice();
 		Long orderID = 1L;
 		Integer inputForNextBuy = 1;
+		String inputForNextBuyN = "0";
 		Long itemID = 1L;
-		Integer quantity = 2;
-		// Double price = 300.00;
-		Double Amount = 300.00;
+		Integer quantity = 1;
+		Double price = 300.00;
 		String ItemName = "item1";
 		Mockito.doReturn(orderID, itemID).when(orderItemsController).getInputL();
 		Mockito.doReturn(quantity, inputForNextBuy).when(orderItemsController).getInputI();
-//		Mockito.doReturn(price, Amount).when(orderItemsController).getInputD();
-		Mockito.doReturn(ItemName).when(orderItemsController).getInput();
+		Mockito.doReturn(inputForNextBuyN).when(orderItemsController).getInput();
 		OrderItems Orderitems = new OrderItems(itemID, orderID, quantity);
-		Double price = Orderitems.getPrice();
-		Mockito.doReturn(price, Amount).when(orderItemsController).getInputD();
-		Mockito.when(orderItemsServices.create(Orderitems)).thenReturn(Orderitems);
-		assertEquals(Orderitems, orderItemsController.create());
+		OrderItems savedOrderItems = new OrderItems(1L, 1L, 1L, quantity, price, ItemName);
+		Mockito.when(orderItemsServices.create(Orderitems)).thenReturn(savedOrderItems);
+		assertEquals(savedOrderItems, orderItemsController.create());
 	}
-//		Long order_address = "123 road";
-//		String order_date = "19th January 2020";
-//		Long customerid = 1L;
-//		Mockito.doReturn(order_address, order_date).when(ordersController).getInput();
-//		Mockito.doReturn(customerid).when(ordersController).getInputL();
-//		Orders orders = new Orders(order_address, order_date, customerid);
-//		Orders savedOrder = new Orders(1L, "123 road", "19th January 2020", 1L);
-//		Mockito.when(ordersServices.create(orders)).thenReturn(savedOrder);
-//		assertEquals(savedOrder, ordersController.create());
-//	}
 
 	@Test
 	public void updateTest() {

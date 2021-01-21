@@ -17,10 +17,10 @@ public class OrderItemsTest {
 
 	@Before
 	public void setUp() {
-		orderItems = new OrderItems(1L, 1L, 1L, 2);
-		other = new OrderItems(1L, 1L, 1L, 2);
-		foreign = new OrderItems(1L, 1L, 1L, 2, 300.00, "item1");
-		otherForeign = new OrderItems(1L, 1L, 1L, 2, 300.00, "item1");
+		orderItems = new OrderItems(1L, 1L, 1L, 1);
+		other = new OrderItems(1L, 1L, 1L, 1);
+		foreign = new OrderItems(1L, 1L, 1L, 1, 300.00, "item1");
+		otherForeign = new OrderItems(1L, 1L, 1L, 1, 300.00, "item1");
 
 	}
 
@@ -63,7 +63,7 @@ public class OrderItemsTest {
 		assertEquals(1L, orderItems.getId(), 0);
 		assertEquals(1L, orderItems.getOrderID(), 0);
 		assertEquals(1L, orderItems.getItemID(), 0);
-		assertEquals(2, orderItems.getQuantity());
+		assertEquals(1, orderItems.getQuantity());
 	}
 
 	@Test
@@ -144,7 +144,7 @@ public class OrderItemsTest {
 
 	@Test
 	public void otherQuantityDifferent() {
-		other.setQuantity(1);
+		other.setQuantity(3);
 		assertFalse(orderItems.equals(other));
 	}
 
@@ -188,12 +188,12 @@ public class OrderItemsTest {
 
 	@Test
 	public void constructorWithoutId() {
-		OrderItems orderItems = new OrderItems(1L, 1L, 2);
+		OrderItems orderItems = new OrderItems(1L, 1L, 1);
 		assertNull(orderItems.getId());
 		assertNotNull(orderItems.getOrderID());
 		assertNotNull(orderItems.getItemID());
 		assertNotNull(orderItems.getQuantity());
-		OrderItems foreign = new OrderItems(1L, 1L, 2, 300.00, "item1");
+		OrderItems foreign = new OrderItems(1L, 1L, 1, 300.00, "item1");
 		assertNotNull(foreign.getOrderID());
 		assertNotNull(foreign.getItemID());
 		assertNotNull(foreign.getQuantity());
@@ -215,7 +215,7 @@ public class OrderItemsTest {
 
 	@Test
 	public void toStringTest() {
-		String toString = "id:1 ItemID:1 OrderID:1 ItemName:item1 Price:300.0 Quantity:2";
+		String toString = "id:1 ItemID:1 OrderID:1 ItemName:item1 Price:300.0 Quantity:1";
 		assertEquals(toString, foreign.toString());
 	}
 

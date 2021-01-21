@@ -1,3 +1,4 @@
+drop database if exists ims_test;
 create database if not exists ims_test;
 drop table if exists ims_test.customers;
 drop table if exists ims_test.items;

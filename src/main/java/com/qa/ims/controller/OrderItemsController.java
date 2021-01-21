@@ -53,25 +53,28 @@ public class OrderItemsController implements CrudController<OrderItems> {
 		LOGGER.info("Please enter the ID of the order you would like to add item(s) to");
 		Long orderID = getInputL();
 		LOGGER.info("Would you like to add items to this order? 1 for YES, 0 for NO");
+		@SuppressWarnings("unused")
 		int inputForNextBuy = getInputI();
+		String inputForNextBuyN;
+		OrderItems orderItems = null;
 		do {
 			LOGGER.info("Please enter the ID of the item you would like to add to the order");
 			Long itemID = getInputL();
 			LOGGER.info("Please enter quantity you would like to add");
 			Integer quantity = getInputI();
-			OrderItems Orderitems = orderitemsService.create(new OrderItems(itemID, orderID, quantity));
-			Double price = Orderitems.getPrice();
+			orderItems = orderitemsService.create(new OrderItems(itemID, orderID, quantity));
+			Double price = orderItems.getPrice();
 			Double Amount = quantity * price;
 			System.out.println("Price of item = " + Amount);
 			TotalCost = TotalCost + Amount;
 			System.out.println("Total Cost = " + TotalCost);
 			LOGGER.info("Item added to order");
 			LOGGER.info("Would you like to add another item the order? 1 for YES, 0 for NO");
-			inputForNextBuy = getInputI();
+			inputForNextBuyN = getInput();
 
-		} while (inputForNextBuy == 1);
+		} while (inputForNextBuyN.equals("1"));
 
-		return null;
+		return orderItems;
 
 	}
 

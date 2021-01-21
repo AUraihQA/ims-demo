@@ -73,7 +73,7 @@ public class CustomerDaoMysqlTesting {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(jdbcConnectionUrl, username, password);
 		String firstName = "Adi";
 		String surname = "Uraih";
-		Customer customer = new Customer(null, firstName, surname);
+		Customer customer = new Customer(firstName, surname);
 		Customer savedCustomer = new Customer(null, "Adi", "Uraih");
 		customer = customerDaoMysql.create(customer);
 		customerDaoMysql.update(customer);
