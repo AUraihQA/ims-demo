@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrderItems.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adi-ims</a> &gt; <a href="index.source.html" class="el_package">com.qa.ims.persistence.domain</a> &gt; <span class="el_source">OrderItems.java</span></div><h1>OrderItems.java</h1><pre class="source lang-java linenums">package com.qa.ims.persistence.domain;
+
+public class OrderItems {
+	private Long id;
+	private Long itemID;
+	private Long orderID;
+	private Double price;
+	private Integer quantity;
+	private String ItemName;
+
+<span class="fc" id="L11">	public OrderItems(Long itemID, Long orderID, Integer quantity, Double price, String ItemName) {</span>
+<span class="fc" id="L12">		this.itemID = itemID;</span>
+<span class="fc" id="L13">		this.orderID = orderID;</span>
+<span class="fc" id="L14">		this.quantity = quantity;</span>
+<span class="fc" id="L15">		this.price = price;</span>
+<span class="fc" id="L16">		this.ItemName = ItemName;</span>
+<span class="fc" id="L17">	}</span>
+
+<span class="fc" id="L19">	public OrderItems(Long id, Long itemID, Long orderID, Integer quantity, Double price, String ItemName) {</span>
+<span class="fc" id="L20">		this.id = id;</span>
+<span class="fc" id="L21">		this.itemID = itemID;</span>
+<span class="fc" id="L22">		this.orderID = orderID;</span>
+<span class="fc" id="L23">		this.quantity = quantity;</span>
+<span class="fc" id="L24">		this.price = price;</span>
+<span class="fc" id="L25">		this.ItemName = ItemName;</span>
+<span class="fc" id="L26">	}</span>
+
+<span class="fc" id="L28">	public OrderItems(Long itemID, Long orderID, Integer quantity) {</span>
+<span class="fc" id="L29">		this.itemID = itemID;</span>
+<span class="fc" id="L30">		this.orderID = orderID;</span>
+<span class="fc" id="L31">		this.quantity = quantity;</span>
+<span class="fc" id="L32">	}</span>
+
+<span class="fc" id="L34">	public OrderItems(Long id, Long itemID, Long orderID, Integer quantity) {</span>
+<span class="fc" id="L35">		this.id = id;</span>
+<span class="fc" id="L36">		this.itemID = itemID;</span>
+<span class="fc" id="L37">		this.orderID = orderID;</span>
+<span class="fc" id="L38">		this.quantity = quantity;</span>
+<span class="fc" id="L39">	}</span>
+
+	public OrderItems(Double price) {
+<span class="nc" id="L42">		super();</span>
+<span class="nc" id="L43">		this.price = price;</span>
+<span class="nc" id="L44">	}</span>
+
+	public Long getId() {
+<span class="fc" id="L47">		return id;</span>
+	}
+
+	public void setId(Long id) {
+<span class="fc" id="L51">		this.id = id;</span>
+<span class="fc" id="L52">	}</span>
+
+	public Long getItemID() {
+<span class="fc" id="L55">		return itemID;</span>
+	}
+
+	public void setItemID(Long itemID) {
+<span class="fc" id="L59">		this.itemID = itemID;</span>
+<span class="fc" id="L60">	}</span>
+
+	public Long getOrderID() {
+<span class="fc" id="L63">		return orderID;</span>
+	}
+
+	public void setOrderID(Long orderID) {
+<span class="fc" id="L67">		this.orderID = orderID;</span>
+<span class="fc" id="L68">	}</span>
+
+	public int getQuantity() {
+<span class="fc" id="L71">		return quantity;</span>
+	}
+
+	public void setQuantity(int quantity) {
+<span class="fc" id="L75">		this.quantity = quantity;</span>
+<span class="fc" id="L76">	}</span>
+
+	public Double getPrice() {
+<span class="fc" id="L79">		return price;</span>
+	}
+
+	public void setPrice(Double price) {
+<span class="fc" id="L83">		this.price = price;</span>
+<span class="fc" id="L84">	}</span>
+
+	public String getItemName() {
+<span class="fc" id="L87">		return ItemName;</span>
+	}
+
+	public void setItemName(String itemName) {
+<span class="fc" id="L91">		ItemName = itemName;</span>
+<span class="fc" id="L92">	}</span>
+
+	@Override
+	public String toString() {
+<span class="fc" id="L96">		return &quot;id:&quot; + id + &quot; ItemID:&quot; + itemID + &quot; OrderID:&quot; + orderID + &quot; ItemName:&quot; + ItemName + &quot; Price:&quot; + price</span>
+				+ &quot; Quantity:&quot; + quantity;
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L102">		final int prime = 31;</span>
+<span class="fc" id="L103">		int result = 1;</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">		result = prime * result + ((ItemName == null) ? 0 : ItemName.hashCode());</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">		result = prime * result + ((id == null) ? 0 : id.hashCode());</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">		result = prime * result + ((itemID == null) ? 0 : itemID.hashCode());</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">		result = prime * result + ((price == null) ? 0 : price.hashCode());</span>
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());</span>
+<span class="fc" id="L110">		return result;</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="fc bfc" id="L115" title="All 2 branches covered.">		if (this == obj)</span>
+<span class="fc" id="L116">			return true;</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">		if (obj == null)</span>
+<span class="fc" id="L118">			return false;</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">		if (getClass() != obj.getClass())</span>
+<span class="fc" id="L120">			return false;</span>
+<span class="fc" id="L121">		OrderItems other = (OrderItems) obj;</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">		if (ItemName == null) {</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">			if (other.ItemName != null)</span>
+<span class="fc" id="L124">				return false;</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">		} else if (!ItemName.equals(other.ItemName))</span>
+<span class="fc" id="L126">			return false;</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">		if (id == null) {</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">			if (other.id != null)</span>
+<span class="fc" id="L129">				return false;</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">		} else if (!id.equals(other.id))</span>
+<span class="fc" id="L131">			return false;</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">		if (itemID == null) {</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">			if (other.itemID != null)</span>
+<span class="fc" id="L134">				return false;</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">		} else if (!itemID.equals(other.itemID))</span>
+<span class="fc" id="L136">			return false;</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">		if (orderID == null) {</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">			if (other.orderID != null)</span>
+<span class="fc" id="L139">				return false;</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">		} else if (!orderID.equals(other.orderID))</span>
+<span class="fc" id="L141">			return false;</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">		if (price == null) {</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">			if (other.price != null)</span>
+<span class="fc" id="L144">				return false;</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">		} else if (!price.equals(other.price))</span>
+<span class="fc" id="L146">			return false;</span>
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">		if (quantity == null) {</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">			if (other.quantity != null)</span>
+<span class="nc" id="L149">				return false;</span>
+<span class="fc bfc" id="L150" title="All 2 branches covered.">		} else if (!quantity.equals(other.quantity))</span>
+<span class="fc" id="L151">			return false;</span>
+<span class="fc" id="L152">		return true;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

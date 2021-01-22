@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrdersController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">adi-ims</a> &gt; <a href="index.source.html" class="el_package">com.qa.ims.controller</a> &gt; <span class="el_source">OrdersController.java</span></div><h1>OrdersController.java</h1><pre class="source lang-java linenums">package com.qa.ims.controller;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.qa.ims.persistence.domain.Orders;
+import com.qa.ims.services.CrudServices;
+import com.qa.ims.utils.Utils;
+
+public class OrdersController implements CrudController&lt;Orders&gt; {
+
+<span class="fc" id="L13">	public static final Logger LOGGER = Logger.getLogger(OrdersController.class);</span>
+
+	private CrudServices&lt;Orders&gt; ordersService;
+
+<span class="fc" id="L17">	public OrdersController(CrudServices&lt;Orders&gt; ordersService) {</span>
+<span class="fc" id="L18">		this.ordersService = ordersService;</span>
+
+<span class="fc" id="L20">	}</span>
+
+	String getInput() {
+<span class="nc" id="L23">		return Utils.getInput();</span>
+	}
+
+	Double getInputD() {
+<span class="nc" id="L27">		return Utils.getInputD();</span>
+	}
+
+	Long getInputL() {
+<span class="nc" id="L31">		return Utils.getInputL();</span>
+	}
+
+	Integer getInputI() {
+<span class="nc" id="L35">		return Utils.getInputI();</span>
+	}
+
+	@Override
+	public List&lt;Orders&gt; readAll() {
+<span class="fc" id="L40">		List&lt;Orders&gt; orders = ordersService.readAll();</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">		for (Orders order : orders) {</span>
+<span class="fc" id="L42">			LOGGER.info(order.toString());</span>
+<span class="fc" id="L43">		}</span>
+<span class="fc" id="L44">		return orders;</span>
+	}
+
+	@Override
+	public Orders create() {
+<span class="fc" id="L49">		LOGGER.info(&quot;Please enter the address of the order&quot;);</span>
+<span class="fc" id="L50">		String order_address = getInput();</span>
+<span class="fc" id="L51">		LOGGER.info(&quot;Please enter the date the order was placed&quot;);</span>
+<span class="fc" id="L52">		String order_date = getInput();</span>
+<span class="fc" id="L53">		LOGGER.info(&quot;Please enter the id of the customer that placed the order&quot;);</span>
+<span class="fc" id="L54">		Long customerid = getInputL();</span>
+<span class="fc" id="L55">		Orders orders = ordersService.create(new Orders(order_address, order_date, customerid));</span>
+<span class="fc" id="L56">		LOGGER.info(&quot;Order created&quot;);</span>
+<span class="fc" id="L57">		LOGGER.info(&quot;To add items to this order, please go to ORDER_ITEMS&quot;);</span>
+<span class="fc" id="L58">		return orders;</span>
+	}
+
+	@Override
+	public Orders update() {
+<span class="fc" id="L63">		LOGGER.info(&quot;Please enter the id of the order you would like to update&quot;);</span>
+<span class="fc" id="L64">		Long id = Long.valueOf(getInput());</span>
+<span class="fc" id="L65">		LOGGER.info(&quot;Please enter the address of the order&quot;);</span>
+<span class="fc" id="L66">		String order_address = getInput();</span>
+<span class="fc" id="L67">		LOGGER.info(&quot;Please enter the date the order was placed&quot;);</span>
+<span class="fc" id="L68">		String order_date = getInput();</span>
+<span class="fc" id="L69">		LOGGER.info(&quot;Please enter the id of the customer that placed the order&quot;);</span>
+<span class="fc" id="L70">		Long customerid = getInputL();</span>
+<span class="fc" id="L71">		Orders orders = ordersService.update(new Orders(id, order_address, order_date, customerid));</span>
+<span class="fc" id="L72">		LOGGER.info(&quot;Order created&quot;);</span>
+<span class="fc" id="L73">		LOGGER.info(&quot;To add items to this order, please go to ORDER_ITEMS&quot;);</span>
+<span class="fc" id="L74">		return orders;</span>
+
+	}
+
+	@Override
+	public void delete() {
+<span class="fc" id="L80">		LOGGER.info(&quot;Please enter the id of the order you would like to delete&quot;);</span>
+<span class="fc" id="L81">		Long id = Long.valueOf(getInput());</span>
+<span class="fc" id="L82">		ordersService.delete(id);</span>
+<span class="fc" id="L83">		LOGGER.info(&quot;Order Deleted&quot;);</span>
+
+<span class="fc" id="L85">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
