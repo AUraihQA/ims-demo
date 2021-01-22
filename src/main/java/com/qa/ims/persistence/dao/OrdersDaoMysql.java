@@ -32,6 +32,15 @@ public class OrdersDaoMysql implements Dao<Orders> {
 
 	}
 
+	Orders ordersFromResultSet1(ResultSet resultSet) throws SQLException {
+		Long id = resultSet.getLong("id");
+		String OrderAddress = resultSet.getString("order_address");
+		String OrderDate = resultSet.getString("order_date");
+		Long CustomerID = resultSet.getLong("customerid");
+
+		return new Orders(id, OrderAddress, OrderDate, CustomerID);
+	}
+
 	Orders ordersFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		String OrderAddress = resultSet.getString("order_address");
@@ -66,10 +75,9 @@ public class OrdersDaoMysql implements Dao<Orders> {
 	public Orders readLatest() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery(
-						"select orders.id, orders.order_address, orders.order_date, orders.customerid, order_items.itemID, items.item_name, items.Price, order_items.quantity from order_items join orders on order_items.orderid=orders.id join items on items.id=order_items.itemID ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("select * from orders ORDER BY id DESC LIMIT 1");) {
 			resultSet.next();
-			return ordersFromResultSet(resultSet);
+			return ordersFromResultSet1(resultSet);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());

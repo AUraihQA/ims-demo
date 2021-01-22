@@ -76,17 +76,6 @@ public class OrderItemsDaoMysqlTest {
 		}
 	}
 
-//	@Before
-//	public void setUpOrderItems() {
-//		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-//				Statement statement = connection.createStatement();) {
-//			statement.executeUpdate("INSERT INTO order_items(id, orderID, itemID, quantity) VALUES (1, 1, 1, 1);");
-//		} catch (Exception e) {
-//			LOGGER.debug(e.getStackTrace());
-//			LOGGER.error(e.getMessage());
-//		}
-//	}
-
 	@Test
 	public void createTest() {
 		OrderItemsDaoMysql orderitemsDaoMysql = new OrderItemsDaoMysql(jdbcConnectionUrl, username, password);

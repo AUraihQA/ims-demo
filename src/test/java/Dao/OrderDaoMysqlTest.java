@@ -93,13 +93,14 @@ public class OrderDaoMysqlTest {
 		String OrderAddress = "123 Road";
 		String OrderDate = "20th January 2021";
 		Long CustomerID = 1L;
-		Integer quantity = 1;
-		Double Price = 300.0;
-		String ItemName = "PS4";
-		Long itemID = 1L;
+		Integer quantity = 0;
+		Double Price = null;
+		String ItemName = null;
+		Long itemID = null;
 		Orders orders = new Orders(OrderAddress, OrderDate, CustomerID, itemID, ItemName, Price, quantity);
-		Orders savedOrder = new Orders(1L, OrderAddress, OrderDate, CustomerID, itemID, ItemName, Price, quantity);
+		Orders savedOrder = new Orders(null, OrderAddress, OrderDate, CustomerID, itemID, ItemName, Price, quantity);
 		orders = ordersDaoMysql.create(orders);
+		orders.setId(null);
 		assertEquals(savedOrder, orders);
 
 	}
@@ -110,14 +111,14 @@ public class OrderDaoMysqlTest {
 		String OrderAddress = "123 Road";
 		String OrderDate = "20th January 2021";
 		Long CustomerID = 1L;
-		Integer quantity = 1;
-		Double Price = 300.0;
-		String ItemName = "PS4";
-		Long itemID = 1L;
+		Integer quantity = 0;
+		Double Price = null;
+		String ItemName = null;
+		Long itemID = null;
 		Orders orders = new Orders(OrderAddress, OrderDate, CustomerID, itemID, ItemName, Price, quantity);
-		Orders savedOrder = new Orders(1L, OrderAddress, OrderDate, CustomerID, itemID, ItemName, Price, quantity);
+		Orders savedOrder = new Orders(null, OrderAddress, OrderDate, CustomerID, itemID, ItemName, Price, quantity);
 		orders = ordersDaoMysql.create(orders);
-//		orders.setId(null);
+		orders.setId(null);
 		ordersDaoMysql.readOrders(2L);
 		assertEquals(savedOrder, orders);
 	}
@@ -128,13 +129,14 @@ public class OrderDaoMysqlTest {
 		String OrderAddress = "123 Road";
 		String OrderDate = "20th January 2021";
 		Long CustomerID = 1L;
-		Integer quantity = 1;
-		Double Price = 300.0;
-		String ItemName = "PS4";
-		Long itemID = 1L;
+		Integer quantity = 0;
+		Double Price = null;
+		String ItemName = null;
+		Long itemID = null;
 		Orders orders = new Orders(OrderAddress, OrderDate, CustomerID, itemID, ItemName, Price, quantity);
-		Orders savedOrder = new Orders(1L, OrderAddress, OrderDate, CustomerID, itemID, ItemName, Price, quantity);
+		Orders savedOrder = new Orders(null, OrderAddress, OrderDate, CustomerID, itemID, ItemName, Price, quantity);
 		orders = ordersDaoMysql.create(orders);
+		orders.setId(null);
 		ordersDaoMysql.update(orders);
 		assertEquals(savedOrder, orders);
 
